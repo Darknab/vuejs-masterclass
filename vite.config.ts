@@ -6,6 +6,8 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueDevTools from 'vite-plugin-vue-devtools'
 import tailwindcss from '@tailwindcss/vite'
+import { VueRouterAutoImports } from 'unplugin-vue-router'
+import Components from 'unplugin-vue-components/vite'
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -28,9 +30,19 @@ export default defineConfig({
         /\.vue\.[tj]sx?\?vue/, // .vue (vue-loader with experimentalInlineMatchResource enabled)
         /\.md$/, // .md
       ],
-      imports: ['vue', 'vue-router'],
+      imports: [
+        'vue',
+        VueRouterAutoImports,
+        {
+          pinia: ['defineStore', 'storeToRefs', 'acceptHMRUpdates'],
+        },
+      ],
       dts: true,
       viteOptimizeDeps: true,
+      dirs: ['src/stores'],
+    }),
+    Components({
+      /* options */
     }),
   ],
   resolve: {

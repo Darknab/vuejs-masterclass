@@ -1,5 +1,7 @@
 <script setup lang="ts">
-import { supabase } from '@/lib/supabaseClient'
+import { usePageStore } from '@/stores/page'
+
+usePageStore().pageData.title = 'Homepage'
 </script>
 
 <template>
