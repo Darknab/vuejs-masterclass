@@ -1,5 +1,7 @@
 <script setup lang="ts">
-onMounted(async () => {})
+onMounted(() => {
+  useAuthStore().trackAuthChanges()
+})
 </script>
 
 <template>
